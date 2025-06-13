@@ -1,0 +1,202 @@
+@model List<TechCorp.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employee Dashboard";
+}
+
+@* <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" /> *@
+
+<style>
+    .dashboard-header {
+        font-weight: bold;
+        text-align: start;
+    }
+
+    .card {
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-section {
+        background-color: #f8f9fa;
+        padding: 25px;
+        margin-bottom: 40px;
+    }
+
+    .employee-avatar {
+        width: 40px;
+        height: 40px;
+        background-color: #6f42c1;
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    .btn-add {
+        background-color: hsla(330, 100%, 71%, 0.6);
+        border: none;
+    }
+
+    .btn-add:hover {
+        background-color: hsla(330, 100%, 60%, 0.6);
+    }
+
+    .table thead th {
+        background-color: #f1f3f5;
+    }
+
+    .badge-title {
+        background-color: #e0cffc;
+        color: #e83e8c;
+        font-size: 0.9em;
+    }
+
+    .badge-dept {
+        background-color: #cfe2ff;
+        color: #084298;
+        font-size: 0.9em;
+    }
+
+    .action-btns .btn {
+        margin-right: 5px;
+    }
+</style>
+
+<div class="container-fluid d-flex align-items-center justify-content-between">
+    <span>
+        <h1 class="dashboard-header text-primary mt-2">EMS Dashboard</h1>
+        <p class="small text-muted" style="margin-top: -0.5rem">
+            View, add, update, and remove employee records with ease and stay organized and in control of your workforce.
+        </p>
+    </span>
+    <div class="">
+        @* <button type="submit" class="btn btn-add text-white"> *@
+        @*     <i class="bi bi-plus-circle"></i> Add Employee *@
+        @* </button> *@
+        <a asp-controller="Employee" asp-action="Details" class="btn btn-add text-white mb-4">
+            <i class="bi bi-person-plus"></i> Add New Employee
+        </a>
+
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="card container-fluid">
+        <div class="card-body">
+            <h5 class="card-title mb-3 fw-bold text-muted">Employee List</h5>
+            <div class="table-responsive table-scroll" style="max-height: 500px; overflow-y: auto;">
+                <table class="table table-hover align-middle">
+                    <tbody>
+                    <thead class="table-primary sticky-top">
+                    <tr>
+                        <th>Employee Details</th>
+                        <th>Job Title</th>
+                        <th>Department</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                    </thead>
+                    @if (Model.Count == 0)
+                    {
+                        <tr>
+                            <td colspan="4">
+                                <div class="container p-5 d-flex align-items-center text-muted justify-content-center">
+                                    <div class="justify-content-center">
+                                        <i class="bi bi-person-walking d-flex justify-content-center"
+                                           style="font-size: 18rem"></i>
+                                        <h3 class="d-flex justify-content-center">No employee data</h3>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var emp in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="employee-avatar" style="background-color: @emp.ColorHex;">
+                                            @emp.FullName[0]
+                                        </div>
+                                        <div>
+                                            <strong>@emp.FullName</strong><br/>
+                                            <small>@emp.EmailAddress</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="badge badge-title">@emp.JobTitle</span></td>
+                                <td><span class="badge badge-dept">@emp.Department</span></td>
+                                <td class="text-end action-btns">
+                                    <a asp-controller="Employee" asp-action="Details" asp-route-id="@emp.EmployeeId"
+                                       class="btn btn-sm btn-info" title="View Details">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    @* <a asp-controller="Employee" asp-action="Edit" asp-route-id="@emp.EmployeeId" class="btn btn-sm btn-warning text-white" title="Edit Employee"> *@
+                                    @*     <i class="bi bi-pencil"></i> Edit *@
+                                    @* </a> *@
+                                    <button
+                                        type="button"
+                                        class="btn btn-sm btn-outline-danger"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal"
+                                        data-employee-id="@emp.EmployeeId"
+                                        data-employee-name="@emp.FullName"
+                                        title="Delete Employee">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="deleteForm" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete <strong id="employeeNamePlaceholder">this employee</strong>?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const deleteModal = document.getElementById('deleteModal');
+        deleteModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const employeeId = button.getAttribute('data-employee-id');
+            const employeeName = button.getAttribute('data-employee-name');
+
+            const form = deleteModal.querySelector('#deleteForm');
+            const namePlaceholder = deleteModal.querySelector('#employeeNamePlaceholder');
+
+            // Update action to point to the delete route
+            form.action = `/Employee/Delete/${employeeId}`;
+
+            // Update name placeholder in modal
+            namePlaceholder.textContent = employeeName;
+        });
+    </script>
+}

@@ -1,0 +1,123 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.feature-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  cursor: pointer;
+  will-change: transform;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border-color: #b6effb;
+}
+
+.expandable-card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+}
+
+.expandable-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border-color: #b6effb;
+}
+
+.expand-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(105, 105, 105, 0.9); /* dimgray with 60% opacity */
+  color: white;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(100%);
+  transition: all 0.4s ease;
+  z-index: 10;
+}
+
+.expandable-card.expanded .expand-overlay {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.underline-hover {
+  position: relative;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.text-hover {
+  transition: color 0.3s ease;
+}
+
+.text-hover:hover {
+  font-weight: 500;
+  transition: font-weight 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out;
+  color: inherit;
+}
+
+.underline-hover::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: hsla(330, 100%, 71%, 0.6);
+  transition: width 0.3s ease;
+}
+
+.underline-hover:hover::after {
+  width: 100%;
+}
+
+.text-primary-pink {
+  color: hsla(330, 100%, 71%, 0.6);
+}
+
+.scoped-nav .nav-link.active,
+.scoped-nav .nav-link.active::after {
+  color: hsla(330, 100%, 71%, 0.6) !important;
+  font-weight: bold;
+}
+
+.scoped-nav .nav-link.active::after {
+  width: 100%;
+}

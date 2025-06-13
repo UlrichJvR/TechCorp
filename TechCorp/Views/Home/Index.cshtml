@@ -1,0 +1,342 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@inject SignInManager<AdminUser> SignInManager
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<!-- Welcome Section -->
+<div class="text-center">
+    <div class="mx-5">
+        <div class="d-flex justify-content-center align-items-center mb-3">
+            <!-- Icon Switch on Hover -->
+            <div class="icon-switch">
+                <i class="bi bi-person-raised-hand default-icon text-primary" style="font-size: 26rem;"></i>
+                @* <i class="bi bi-person-standing-dress hover-icon text-primary" style="font-size: 33rem;"></i> *@
+            </div>
+
+            <div class="ms-3 text-start">
+                <h1 class="display-1 fw-bold text-primary mb-0" style="color: hotpink;">Welcome <span class="mt-1"
+                                                                                                      style="color: darkgray; font-size: 1rem; margin-left: -0.7rem">To</span>
+                </h1>
+                <div class="px-3" style="margin-top: -0.3rem;">
+                    <div class="fs-5 fw-bold"
+                         style="font-size: 1.5rem; color: hsla(330, 100%, 71%, 0.6); display: flex; align-items: center; gap: 0.4rem;">
+                        @* <span class="mt-1">To</span> *@
+                        <span
+                            style="color: hotpink; font-size: 2rem; line-height: 0; display: inline-block;">TechCorp</span>
+                        <span class="mt-1" id="ems-text">
+                          <span style="color: hotpink;">E</span><span class="rest">mployee </span>
+                          <span style="color: hotpink;">M</span><span class="rest">anagement </span>
+                          <span style="color: hotpink;">S</span><span class="rest">ystem</span>
+                        </span>
+                    </div>
+
+                    <p class="lead flex-wrap w-100" style="font-size: 0.8rem; color: lightslategray; margin-left: 6px">
+                        A secure and efficient system to manage TechCorp's employee records with confidence and clarity.
+                    </p>
+                    <!-- Call to Action -->
+                    <div class="text-start mb-5">
+                        <p class="lead">
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <a class="btn btn-outline-primary btn-light d-inline-flex align-items-center gap-2 login-btn"
+                                   asp-area="" asp-controller="Employee" asp-action="Index">
+                                    <span class="icon-container">
+                                        <img src="favicon3.png" class="hover-icon" style="height: 1rem; width: 1rem;"/>
+                                        <img src="favicon.png" class="default-icon" style="height: 1rem; width: 1rem;"/>
+                                    </span>
+                                    Start Managing Your Employees
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-outline-primary btn-light d-inline-flex align-items-center gap-2 login-btn"
+                                   asp-area="Identity" asp-page="/Account/Login">
+                                    <span class="icon-container">
+                                        <img src="favicon3.png" class="hover-icon" style="height: 1rem; width: 1rem;"/>
+                                        <img src="favicon.png" class="default-icon" style="height: 1rem; width: 1rem;"/>
+                                    </span>
+                                    Log in to manage employees
+                                </a>
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- System Overview -->
+<div class="container">
+    <div class="position-relative text-center align-items-center my-5">
+        <hr>
+        <span class="section-title bg-white px-3" style="color: hsla(330, 100%, 71%, 0.6);">
+            System Overview
+        </span>
+    </div>
+
+    <div class="container my-5">
+        <div class="glassmorphic-card p-4 text-center">
+            <div class="row g-4 d-flex align-items-center">
+                <div class="col-md-4">
+                    <h4 class="mb-3 text-secondary" style="font-size: 2rem;">
+                        <div class="me-2" style="font-size: 2.5rem;">
+                            <i class="bi bi-fingerprint" style="color: hsla(330, 100%, 71%, 0.6)"></i>
+                        </div>
+                        Secure Access
+                    </h4>
+                    <p class="text-muted fs-6 px-3">
+                        Only registered administrators can log in and manage employee data.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="mb-3 text-primary" style="font-size: 2rem;">
+                        <div class="me-2" style="font-size: 2.5rem;">
+                            <i class="bi bi-people text-primary" style="font-size: 8rem;"></i>
+                        </div>
+                        Employee Management
+                    </h4>
+                    <p class="text-muted fs-6 px-3">
+                        Perform full CRUD operations on employees: add, view, update, and delete records.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="mb-3 text-secondary" style="font-size: 2rem;">
+                        <div class="me-2" style="font-size: 2.5rem;">
+                            <i class="bi bi-upc-scan" style="color: hsla(330, 100%, 71%, 0.6)"></i>
+                        </div>
+                        Scalable Design
+                    </h4>
+                    <p class="text-muted fs-6 px-3">
+                        Built using ASP.NET Core MVC with plans for future database integration.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- System Features -->
+<div class="container pb-5">
+    <!-- Section Divider with Themed Title -->
+    <div class="position-relative text-center align-items-center my-5">
+        <hr class="border-primary opacity-25" />
+        <span class="section-title bg-white px-4 fw-semibold" style="color: hsla(330, 100%, 71%, 0.6); font-size: 1.5rem;">
+            System Features
+        </span>
+    </div>
+
+    <!-- Feature Cards Grid -->
+    <div class="row g-4 justify-content-center">
+
+        <!-- Feature Card Template -->
+        <div class="col-md-4" style="transition: transform 0.3s;">
+            <div class="card feature-card h-100 expandable-card border-0 shadow-sm"
+                 onclick="toggleExpand(this)"
+                 style="background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); border-radius: 1rem;">
+
+                <div class="card-body text-center">
+                    <i class="bi bi-person-plus-fill text-primary mb-3" style="font-size: 2.5rem; margin-top: -2rem"></i>
+                    <h5 class="card-title text-dark">Add New Employees</h5>
+                    <p class="card-text text-muted">Quickly register new employees with essential details.</p>
+
+                    <div class="expand-overlay mt-3">
+                        <i class="bi bi-person-plus-fill text-white mb-3" style="font-size: 2.5rem;">Create</i>
+                        <p class="text-light">Admins can add new employees with full job and department info.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Repeat for each card, changing the icon, title, image, and text accordingly -->
+
+        <div class="col-md-4">
+            <div class="card feature-card h-100 expandable-card border-0 shadow-sm"
+                 onclick="toggleExpand(this)"
+                 style="background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); border-radius: 1rem;">
+                <div class="card-body text-center">
+                    <i class="bi bi-pencil-square text-secondary mb-3" style="font-size: 2.5rem;"></i>
+                    <h5 class="card-title text-dark">Edit Employee Details</h5>
+                    <p class="card-text text-muted">Update job titles, departments, and other info anytime.</p>
+                    <div class="expand-overlay mt-3">
+                        <i class="bi bi-pencil-square text-white mb-3" style="font-size: 2.5rem;">Update</i>
+                        <p class="text-light">Edit employee details quickly with in-place updates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card feature-card h-100 expandable-card border-0 shadow-sm"
+                 onclick="toggleExpand(this)"
+                 style="background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); border-radius: 1rem;">
+                <div class="card-body text-center">
+                    <i class="bi bi-person-lines-fill text-primary" style="font-size: 2.5rem;" class="mb-3"></i>
+                    <h5 class="card-title text-dark">View Employee List</h5>
+                    <p class="card-text text-muted">Browse all registered employees in one central place.</p>
+                    <div class="expand-overlay mt-3">
+                        <i class="bi bi-person-lines-fill text-white" style="font-size: 2.5rem;" class="mb-3">Read</i>
+                        <p class="text-light">Easily view and filter through the complete employee list.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete, Secure Access, and In-Memory Storage follow the same structure -->
+
+        <div class="col-md-4">
+            <div class="card feature-card h-100 expandable-card border-0 shadow-sm"
+                 onclick="toggleExpand(this)"
+                 style="background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); border-radius: 1rem;">
+                <div class="card-body text-center">
+                    <i class="bi bi-person-x text-danger mb-3" style="font-size: 2.5rem;"></i>
+                    <h5 class="card-title text-dark">Delete Employee Records</h5>
+                    <p class="card-text text-muted">Remove inactive or incorrect employee entries securely.</p>
+                    <div class="expand-overlay mt-3">
+                        <i class="bi bi-person-x text-white mb-3" style="font-size: 2.5rem;">Delete</i>
+                        <p class="text-light">Admins can securely delete outdated or incorrect data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card feature-card h-100 expandable-card border-0 shadow-sm"
+                 onclick="toggleExpand(this)"
+                 style="background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); border-radius: 1rem;">
+                <div class="card-body text-center">
+                    <i class="bi bi-database-fill-check mb-3" style="color: hotpink;font-size: 2.5rem;"></i>
+                    <h5 class="card-title text-dark">In-Memory Storage</h5>
+                    <p class="card-text text-muted">Temporary list-backed data, with future DB support.</p>
+                    <div class="expand-overlay mt-3">
+                        <i class="bi bi-database-fill-check mb-3 text-white" style="font-size: 2.5rem;">Cache</i>
+                        <p class="text-light">Employee data is temporarily stored in a fast in-memory list.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card feature-card h-100 expandable-card border-0 shadow-sm"
+                 onclick="toggleExpand(this)"
+                 style="background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); border-radius: 1rem;">
+                <div class="card-body text-center">
+                    <i class="bi bi-person-lock mb-3 text-success" style="font-size: 2.5rem;"></i>
+                    <h5 class="card-title text-dark">Secure Admin Access</h5>
+                    <p class="card-text text-muted">Only authenticated admins can use the system.</p>
+                    <div class="expand-overlay mt-3">
+                        <i class="bi bi-person-lock mb-3 text-white" style="font-size: 2.5rem;">Management</i>
+                        <p class="text-light">Access is restricted via authentication using ASP.NET Identity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" style="position: relative;"> *@
+@*     <div class="carousel-inner"> *@
+@*         <div class="carousel-item active" style="position: relative;"> *@
+@*             <img src="~/assets/TC_Logo.png" class="d-block w-100" alt="TechCorp Logo" *@
+@*                  style="height: 100%; object-fit: cover;"> *@
+@* *@
+@*             <!-- Overlay Text --> *@
+@*             <div style=" *@
+@*             text-align: end; *@
+@*           position: absolute; *@
+@*           bottom: 15px; *@
+@*           right: 15px; *@
+@*           color: rgba(255,255,255,0.85); *@
+@*           background-color: rgba(0, 0, 0, 0.4); *@
+@*           padding: 6px 12px; *@
+@*           border-radius: 5px; *@
+@*           font-size: 0.9rem; *@
+@*           font-weight: 500; *@
+@*           user-select: none; *@
+@*           pointer-events: none;"> *@
+@*                 Designed by Ulrich Janse van Rensburg *@
+@*                 <div>8SG26Y144</div> *@
+@*             </div> *@
+@* *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+<style>
+    .glassmorphic-card {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        border-radius: 1rem;
+        box-shadow: 0 0px 0px 0 rgba(31, 38, 135, 0.37);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .icon-container {
+        position: relative;
+        display: inline-block;
+        height: 1rem;
+        width: 1rem;
+    }
+
+    .icon-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .icon-container .hover-icon {
+        opacity: 0;
+    }
+
+    .login-btn:hover .hover-icon {
+        opacity: 1;
+    }
+
+    .login-btn:hover .default-icon {
+        opacity: 0;
+    }
+
+    .section-title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    hr {
+        border-top: 2px solid #0d6efd; /* Bootstrap primary */
+        margin: 0;
+    }
+</style>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        // Reveal all the "rest" spans with delay after page load
+        const rests = document.querySelectorAll('#ems-text .rest');
+        rests.forEach((span, i) => {
+            setTimeout(() => {
+                span.style.opacity = '1';
+            }, 500 + i * 400); // starts at 0.5s, then each next after 0.4s
+        });
+    });
+
+    function toggleExpand(card) {
+        // Collapse any other expanded card
+        document.querySelectorAll('.expandable-card.expanded').forEach(function (otherCard) {
+            if (otherCard !== card) {
+                otherCard.classList.remove('expanded');
+            }
+        });
+
+        // Toggle the clicked card
+        card.classList.toggle('expanded');
+    }
+</script>
+
+

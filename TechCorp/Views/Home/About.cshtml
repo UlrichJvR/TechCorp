@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "About";
+}
+<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" style="position: relative;">
+    <div class="carousel-inner">
+        <div class="carousel-item active" style="position: relative;">
+            <img src="~/assets/TC_Logo.png" class="d-block w-100" alt="TechCorp Logo"
+                 style="height: 100%; object-fit: cover;">
+
+            <!-- Overlay Text -->
+            <div style="
+                    text-align: end;
+                    position: absolute;
+                    bottom: 15px;
+                    right: 15px;
+                    color: rgba(255,255,255,0.85);
+                    background-color: rgba(0, 0, 0, 0.4);
+                    padding: 6px 12px;
+                    border-radius: 5px;
+                    font-size: 0.9rem;
+                    font-weight: 500;
+                    user-select: none;
+                    pointer-events: none;">
+                Designed by Ulrich Janse van Rensburg
+                <div>8SG26Y144</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <h1 class="display-5 fw-bold text-primary mb-4">About TechCorp EMS</h1>
+
+    <p class="text-muted fs-5">
+        TechCorp EMS (Employee Management System) is a web-based solution built using ASP.NET Core MVC, developed to streamline and secure the management of employee records within TechCorp, a fast-growing software development company.
+    </p>
+
+    <p class="text-muted fs-5">
+        This system allows administrators to perform essential CRUD (Create, Read, Update, Delete) operations on employee data. Features include secure administrator authentication, an intuitive UI, and structured handling of employee details such as:
+    </p>
+
+    <ul class="list-group list-group-flush mb-4">
+        <li class="list-group-item">
+            <i class="bi bi-person-badge me-2 text-primary-pink"></i>Employee ID
+        </li>
+        <li class="list-group-item">
+            <i class="bi bi-person-lines-fill me-2 text-primary-pink"></i>Full Name
+        </li>
+        <li class="list-group-item">
+            <i class="bi bi-envelope-at me-2 text-primary-pink"></i>Email Address
+        </li>
+        <li class="list-group-item">
+            <i class="bi bi-briefcase-fill me-2 text-primary-pink"></i>Job Title
+        </li>
+        <li class="list-group-item">
+            <i class="bi bi-diagram-3-fill me-2 text-primary-pink"></i>Department
+        </li>
+    </ul>
+
+
+    <p class="text-muted fs-5">
+        While this version uses an in-memory list for data storage, future iterations will integrate a persistent database for scalability and long-term use.
+    </p>
+
+    <div class="mt-5">
+        <p class="text-muted">
+            <strong>Project developed by:</strong> Ulrich Janse van Rensburg<br />
+            <strong>Student Number:</strong> 8SG26Y144<br />
+            <strong>Module:</strong> ITEHA3-22 - Enterprise Programming in C#<br />
+            <strong>Institution:</strong> Eduvos
+        </p>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+@model Employee
+
+<h1>create page</h1>
+
+<div class="card form-section container">
+    <div class="card-body">
+        <h5 class="card-title mb-4">Add New Employee</h5>
+        <form asp-controller="Employee" asp-action="Create" method="post" class="row g-3 align-items-center">
+            <div class="col-md-3">
+                <input name="FullName" class="form-control" placeholder="Full Name" required />
+            </div>
+            <div class="col-md-3">
+                <input name="EmailAddress" class="form-control" placeholder="Email" type="email" required />
+            </div>
+            <div class="col-md-2">
+                <input name="JobTitle" class="form-control" placeholder="Job Title" />
+            </div>
+            <div class="col-md-2">
+                <input name="Department" class="form-control" placeholder="Department" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AdminUser> SignInManager
+@inject UserManager<AdminUser> UserManager
+
+<style>
+    .dropdown-toggle::after {
+        content: none !important;
+    }
+</style>
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle lobster-hello d-flex align-items-center gap-1 text-muted underline-hover"
+               href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-raised-hand"></i>
+                Hello @User.Identity?.Name!
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">
+                        <i class="bi bi-person-circle me-2"></i> Manage My Profile
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">
+                        <i class="bi bi-person-plus me-2"></i> Add New Profile
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-danger d-flex align-items-center gap-1 text-hover" style="">
+                    <i class="bi bi-box-arrow-left"></i>
+                    Logout
+                </button>
+            </form>
+        </li>
+    }
+    else
+    {
+        // Only logged in users can register
+        @* <li class="nav-item"> *@
+        @*     <a class="nav-link text-secondary underline-hover" asp-area="Identity" asp-page="/Account/Register">Register</a> *@
+        @* </li> *@
+        <li class="nav-item">
+            <a class="nav-link text-secondary underline-hover" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+</ul>
+
+<style>
+    .lobster-hello {
+        font-family: 'Lobster', cursive;
+        font-size: 1rem;
+        color: darkgray;
+        transition: color 0.3s ease;
+    }
+
+    .lobster-hello:hover {
+        color: hsla(330, 100%, 71%, 0.6);
+    }
+
+    .lobster-hello i {
+        transition: color 0.3s ease;
+    }
+
+    .lobster-hello:hover i {
+        color: hotpink;
+    }
+</style>
