@@ -573,3 +573,4 @@
 /Users/mac_n_cheese/RiderProjects/TechCorp/TechCorp/bin/Debug/net8.0/Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
 /Users/mac_n_cheese/RiderProjects/TechCorp/TechCorp/bin/Debug/net8.0/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
 /Users/mac_n_cheese/RiderProjects/TechCorp/TechCorp/obj/Debug/net8.0/scopedcss/Views/Identity/_Layout.cshtml.rz.scp.css
+/Users/mac_n_cheese/RiderProjects/TechCorp/TechCorp/obj/Debug/net8.0/TechCorp.sourcelink.json
