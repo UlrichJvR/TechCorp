@@ -1,0 +1,63 @@
+﻿@page
+@model LoginWithRecoveryCodeModel
+@{
+    ViewData["Title"] = "Recovery code verification";
+}
+
+<style>
+    body, html {
+        height: 100%;
+    }
+
+    .center-screen {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .opaque {
+        opacity: 0.5;
+        transition: opacity 0.3s ease;
+    }
+
+    .opaque:hover {
+        opacity: 1;
+    }
+</style>
+
+<div class="center-screen">
+    <div class="container" style="max-width: 35%;">
+        <section class="shadow p-4 rounded bg-white border">
+            <a class="navbar-brand mb-3 d-block text-center" asp-area="" asp-controller="Home" asp-action="Index">
+                @await Html.PartialAsync("_NavLogo")
+            </a>
+            <h2 class="text-center mb-2" style="color: hotpink;">@ViewData["Title"]</h2>
+            <p class="text-center text-muted mb-4">
+                You've requested to log in with a recovery code. This session won't be remembered unless you log in again using your authenticator app or disable 2FA.
+            </p>
+
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.RecoveryCode" class="form-control" autocomplete="off" placeholder="Recovery Code" />
+                    <label asp-for="Input.RecoveryCode">Recovery Code</label>
+                    <span asp-validation-for="Input.RecoveryCode" class="text-danger"></span>
+                </div>
+
+                <div class="d-grid mb-3">
+                    <button type="submit" class="btn btn-primary btn-lg">Log in</button>
+                </div>
+
+                <div class="text-center">
+                    <a asp-page="./LoginWith2fa" class="opaque" style="color: hotpink;">Back to 2FA login</a>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

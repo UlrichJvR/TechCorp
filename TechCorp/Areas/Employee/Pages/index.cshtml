@@ -1,0 +1,131 @@
+@model List<TechCorp.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employee Dashboard";
+}
+
+@* You can optionally place this in your _Layout.cshtml *@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-mY+..." crossorigin="anonymous" />
+
+<style>
+    body {
+        background-color: #f5f7fa;
+    }
+
+    .dashboard-header {
+        text-align: center;
+        color: #343a40;
+        margin-bottom: 30px;
+    }
+
+    .card-form,
+    .card-table {
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+
+    .card-form {
+        background: linear-gradient(135deg, #e83e8c, #fd7e14);
+        color: white;
+    }
+
+    .card-form .form-control::placeholder {
+        color: #f8f9fa;
+        opacity: 0.9;
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 0 0.2rem rgba(232, 62, 140, 0.25);
+        border-color: #e83e8c;
+    }
+
+    .btn-pink {
+        background-color: #e83e8c;
+        border-color: #e83e8c;
+    }
+
+    .btn-pink:hover {
+        background-color: #d63384;
+        border-color: #d63384;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+    }
+</style>
+
+<div class="container my-5">
+    <h1 class="dashboard-header">TechCorp EMS Dashboard</h1>
+
+    <!-- Add Employee Card -->
+    <div class="card card-form mb-5 p-4">
+        <h4 class="mb-4">Add New Employee</h4>
+        <form asp-controller="Employee" asp-action="Create" method="post">
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <input name="FullName" class="form-control" placeholder="Full Name" required />
+                </div>
+                <div class="col-md-3">
+                    <input name="EmailAddress" class="form-control" placeholder="Email" required />
+                </div>
+                <div class="col-md-2">
+                    <input name="JobTitle" class="form-control" placeholder="Job Title" />
+                </div>
+                <div class="col-md-2">
+                    <input name="Department" class="form-control" placeholder="Department" />
+                </div>
+                <div class="col-md-2 d-grid">
+                    <button type="submit" class="btn btn-light text-dark fw-bold"><i class="fas fa-user-plus me-1"></i>Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Employee Table Card -->
+    <div class="card card-table p-4">
+        <h4 class="mb-3 text-primary"><i class="fas fa-users me-2"></i>Employee List</h4>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Job Title</th>
+                    <th>Department</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                @if (Model.Any())
+                {
+                    @foreach (var emp in Model)
+                    {
+                        <tr>
+                            <td><i class="fas fa-user-circle me-1 text-secondary"></i>@emp.FullName</td>
+                            <td>@emp.EmailAddress</td>
+                            <td><span class="badge bg-info text-dark">@emp.JobTitle</span></td>
+                            <td><span class="badge bg-secondary">@emp.Department</span></td>
+                            <td class="text-center">
+                                <form asp-controller="Employee" asp-action="Delete" method="post" class="d-inline">
+                                    <input type="hidden" name="id" value="@emp.EmployeeId" />
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                        <i class="fas fa-trash-alt"></i> Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">
+                            <em>No employees found. Start by adding one above.</em>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

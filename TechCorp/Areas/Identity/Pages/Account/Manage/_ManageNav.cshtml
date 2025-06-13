@@ -1,0 +1,29 @@
+@using TechCorp.Models
+@inject SignInManager<AdminUser> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+
+<div class="d-flex" style="height: calc(100vh - 56px);"> <!-- Adjust 56px if navbar height differs -->
+    <nav class="pt-2 p-1 border-end bg-light" style="min-width: 100%;">
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item pb-1">
+                <a class="nav-link text-secondary underline-hover d-flex align-items-center d-flex gap-2"
+                   asp-area="" asp-controller="Employee" asp-action="Index" style="font-size: 1.5rem">
+                    <i class="bi bi-house-door text-primary"></i>
+                    <span class="text-primary">Home</span>
+                </a>
+            </li>
+            <li class="nav-item"><a class="nav-link underline-hover @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>
+            <li class="nav-item"><a class="nav-link underline-hover @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
+            <li class="nav-item"><a class="nav-link underline-hover @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
+            @if (hasExternalLogins)
+            {
+                <li id="external-logins" class="nav-item underline-hover"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
+            }
+            <li class="nav-item"><a class="nav-link underline-hover @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
+            <li class="nav-item"><a class="nav-link underline-hover @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>
+        </ul>
+    </nav>
+</div>
+
