@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TechCorp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a99f7d0403fc51d8fbe4a50a44770d81e205049a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f9b803b13f552069f5d5e6716b5715fd546eea15")]
 [assembly: System.Reflection.AssemblyProductAttribute("TechCorp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TechCorp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
